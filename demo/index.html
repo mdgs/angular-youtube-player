@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>angular-youtube-player</title>
+    <script src="vendor/angular.js"></script>
+    <script src="vendor/angularYoutubePlayer.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-app="demoApp" ng-controller="appController">
+    <h3>VIDEO#1</h3>
+    Change parameters to test dynamic functionality (copy paste is preferred for these elements are watched).
+    <br>
+    Note: mediaContentUrl has no effect if videoId is not empty
+    <div>
+        <label for="videoId">videoId</label>
+        <input id="videoId" ng-model="player1.videoId">
+        <label for="mediaContentUrl">mediaContentUrl</label>
+        <input id="mediaContentUrl" ng-model="player1.mediaContentUrl">
+        <br>
+        <label for="width">width</label>
+        <input id="width" ng-model="player1.width">
+        <label for="height">height</label>
+        <input id="height" ng-model="player1.height">
+        <br>
+        <label for="startSeconds">startSeconds</label>
+        <input id="startSeconds" ng-model="player1.videoParameters.startSeconds">
+        <label for="endSeconds">endSeconds</label>
+        <input id="endSeconds" ng-model="player1.videoParameters.endSeconds">
+        <label for="suggestedQuality">suggestedQuality</label>
+        <input id="suggestedQuality" ng-model="player1.videoParameters.suggestedQuality">
+        <br><br>
+    </div>
+
+    <div youtube-video video-id="{{player1.videoId}}" media-content-url="{{player1.mediaContentUrl}}"
+        width="{{player1.width}}" height="{{player1.height}}"
+        video-parameters="player1.videoParameters"
+        on-ready="onReady(event)"
+        on-state-change="onStateChange(event)"
+        on-playback-quality-change="onPlaybackQualityChange(event)"
+        on-playback-rate-change="onPlaybackRateChange(event)"
+        on-error="onError(event)"
+        on-api-change="onApiChange(event)"
+        on-controller-ready="onControllerReady(controller)"
+        on-api-loading-failure="onApiLoadingFailure(controller)"></div>
+
+    <br>
+    <hr>
+    <h3>VIDEO#2</h3>
+    Test whether multiple players at the same page can work
+    <br>
+    mediaContentUrl: {{player2.mediaContentUrl}}
+    <div youtube-video media-content-url="{{player2.mediaContentUrl}}"
+         player-vars="player2.playerVars"></div>
+</body>
+</html>
