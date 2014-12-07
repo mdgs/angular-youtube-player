@@ -3,6 +3,17 @@ angular-youtube-player
 
 Angular module for youtube player API
 
+How to install
+---------
+
+Clone from github:
+
+    git clone https://github.com/bulkismaslom/angular-youtube-player.git
+
+Or using `bower`:
+
+    bower install angular-youtube-player
+
 How to use
 ---------
 
