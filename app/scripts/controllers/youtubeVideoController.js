@@ -6,12 +6,20 @@
  * @description
  * Controller for youtubeVideo directive
  */
-youtubePlayerModule.controller('youtubeVideo', ['$scope','youtubeApi', function($scope, youtubeApi) {
+youtubePlayerModule.controller('youtubeVideo', ['$scope','youtubeApi', '$attrs', '$youtubePlayerDelegate', function($scope, youtubeApi, $attrs, $youtubePlayerDelegate) {
 
     this.player = null;
     this.element = null;
     var playerReady = false;
     var self = this;
+
+    var deregisterInstance = $youtubePlayerDelegate._registerInstance(
+        self, $attrs.delegateHandle
+    );
+
+    $scope.$on('$destroy', function() {
+        deregisterInstance();
+    });
 
     /**
      * @ngdoc method
